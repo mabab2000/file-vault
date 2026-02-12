@@ -3,6 +3,12 @@ from dotenv import load_dotenv
 import os
 import argparse
 
+# Expose the FastAPI app from api.py so `uvicorn main:app` works
+try:
+	from api import app  # type: ignore
+except Exception:
+	app = None
+
 
 def upload_file(local_path: str, remote_path: str) -> None:
 	load_dotenv()
